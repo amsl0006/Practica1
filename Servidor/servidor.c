@@ -25,11 +25,21 @@ Autor: Juan Carlos Cuevas Martínez
 
 main()
 {
-
+	//variables del servidor
 	WORD wVersionRequested;
 	WSADATA wsaData;
+	//creacion sockets
 	SOCKET sockfd,nuevosockfd;
+	//crea estructura de los socket
 	struct sockaddr_in  local_addr,remote_addr;
+	
+	/*
+	buffer_out: tamaño maximo del mesanje enviado
+	buffer_in: tamaño maximo del mensaje recibido
+	cmd:tamaña para
+	usr:tamaño para introducir el usuario
+	pas:tamaño para introducir la contraseña
+	*/
 	char buffer_out[1024],buffer_in[1024], cmd[10], usr[10], pas[10];
 	int err,tamanio;
 	int fin=0, fin_conexion=0;
@@ -41,43 +51,57 @@ main()
 	wVersionRequested=MAKEWORD(1,1);
 	err=WSAStartup(wVersionRequested,&wsaData);
 	if(err!=0){
-		return(-1);
+		return(-1); //si falla nos devuelve -1 y sabemos que es fallo del api de la libreria de los sockets
 	}
 	if(LOBYTE(wsaData.wVersion)!=1||HIBYTE(wsaData.wVersion)!=1){
 		WSACleanup() ;
-		return(-2);
+		return(-2); //si falla nos devuelve -2 y sabemos que es fallo del api de la libreria de los sockets
 	}
 	/** FIN INICIALIZACION DE BIBLIOTECA WINSOCK2 **/
 
+	//creacion del nuevo socket llamado sockfd y la conexion con el servicio
+	//AF_INET: indica que es para ipv4
+	//SOCK_STREAM: usa conexión TCP
+	//0 :protocolo por defecto
 
 	sockfd=socket(AF_INET,SOCK_STREAM,0);//Creación del socket
 
-	if(sockfd==INVALID_SOCKET)	{
+
+	if(sockfd==INVALID_SOCKET)	{ //si el socket no se crea bien INVALID_SOCKET devuelve -3 y sabemos que es fallo de la creacion del nuevo socket
 		return(-3);
 	}
+	//si el socket se crea  correctamente realizamos las estructura de la direccion IPV4
 	else {
 		local_addr.sin_family		=AF_INET;			// Familia de protocolos de Internet
 		local_addr.sin_port			=htons(TCP_SERVICE_PORT);	// Puerto del servidor
 		local_addr.sin_addr.s_addr	=htonl(INADDR_ANY);	// Direccion IP del servidor Any cualquier disponible
 													// Cambiar para que conincida con la del host
 	}
+	//PRIMITIVA BIND
+	//relaciona una direccion a un socket
 	
 	// Enlace el socket a la direccion local (IP y puerto)
 	if(bind(sockfd,(struct sockaddr*)&local_addr,sizeof(local_addr))<0)
 		return(-4);
+	//PRIMITIVA LISTEN
+	//las solicitudes de conexion son almacenadas en una cola
 	
 	//Se prepara el socket para recibir conexiones y se establece el tamaño de cola de espera
-	if(listen(sockfd,5)!=0)
+	if(listen(sockfd,5)!=0) //Longitud máxima de la cola de conexiones pendientes es de 5
 		return (-6);
 	
 	tamanio=sizeof(remote_addr);
 
+	//CAPA DE TRANSPORTE
 	do
 	{
+		//nos muestra por pantalla que esta esperando una conexion
 		printf ("SERVIDOR> ESPERANDO NUEVA CONEXION DE TRANSPORTE\r\n");
 		
+		//se crea un nuevo socket para la realizacion de la conexion
 		nuevosockfd=accept(sockfd,(struct sockaddr*)&remote_addr,&tamanio);
 
+		//si el socket no se crea bien INVALID_SOCKET devuelve -5 y sabemos que es fallo de la creacion del nuevo socket
 		if(nuevosockfd==INVALID_SOCKET) {
 			
 			return(-5);
