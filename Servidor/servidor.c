@@ -285,16 +285,16 @@ main()
 						fin=1;
 					}
 
-					//Si recibe SD3-->ECHO,le devuelve lo que ha escrito menos las 5 primeras palabra que corresponden al comando ECHO con un mensaje de ok
+					/*Si recibe SD3-->ECHO,le devuelve lo que ha escrito menos las 5 primeras palabra que corresponden al comando ECHO con un mensaje de ok
 					else if (strcmp(cmd,SD3) == 0){
 						sprintf_s(buffer_out, sizeof(buffer_out), "%s %s", OK, buffer_in+5);
 					}
 					else
 					{
 						sprintf_s (buffer_out, sizeof(buffer_out), "%s Comando incorrecto%s",ER,CRLF);
-					}
+					}*/
 					break;
-
+					
 				default:
 					break;
 					

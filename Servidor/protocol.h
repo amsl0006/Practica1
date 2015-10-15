@@ -9,6 +9,7 @@
 #define SD  "QUIT"  // Finalizacion de la conexion de aplicacion
 #define SD2 "EXIT"  // Finalizacion de la conexion de aplicacion y finaliza servidor
 
+
 // RESPUESTAS A COMANDOS DE APLICACION
 #define OK  "OK"
 #define ER  "ERROR"
