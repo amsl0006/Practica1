@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Desktop\protocol.h">
+    <ClInclude Include="protocol.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Desktop\cliente.c">
+    <ClCompile Include="cliente.c">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>

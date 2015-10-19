@@ -130,10 +130,12 @@ main()
 					if(enviados<0){
 						printf("SERVIDOR> Error %d en el envio de datos\r\n",error);
 						fin_conexion=1;
+						continue;
 					}
 					else{ // si no, es decir, si su valor es 0 se cierra la conexion
 						printf("SERVIDOR> Conexión con el servidor cerrada\r\n");
 						fin_conexion=1;
+						continue;
 					}
 		}
 		else{ // el valor es mayor que 0 y por tanto los datos se envian correctamente
@@ -166,10 +168,12 @@ main()
 					if(recibidos<0){
 						printf("SERVIDOR> Error %d en la recepcion de datos\r\n",error);
 						fin_conexion=1;
+						continue;
 					}
 					else{ // si no, es decir, si su valor es 0 se cierra la conexion
 						printf("SERVIDOR> Conexión con el servidor cerrada\r\n");
 						fin_conexion=1;
+						continue;
 					}
 		}
 		else{ // el valor es mayor que 0 y por tanto los datos se envian correctamente
@@ -285,14 +289,11 @@ main()
 						fin=1;
 					}
 
-					/*Si recibe SD3-->ECHO,le devuelve lo que ha escrito menos las 5 primeras palabra que corresponden al comando ECHO con un mensaje de ok
-					else if (strcmp(cmd,SD3) == 0){
-						sprintf_s(buffer_out, sizeof(buffer_out), "%s %s", OK, buffer_in+5);
-					}
+					
 					else
 					{
 						sprintf_s (buffer_out, sizeof(buffer_out), "%s Comando incorrecto%s",ER,CRLF);
-					}*/
+					}
 					break;
 					
 				default:

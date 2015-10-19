@@ -153,11 +153,12 @@ int main(int *argc, char *argv[])
 						if(enviados<0){ // si los datos enviados tienen un valor de -1 hay error
 							printf("SERVIDOR> Error %d en el envio de datos\r\n", error);
 							estado=S_QUIT;
-
+							continue;
 						} 
 						else{ // si no, es decir, si su valor es 0 se cierra la conexion
 							printf("SERVIDOR> Conexión con el cliente cerrada\r\n");
 							estado=S_QUIT;
+							continue;
 						}
 					}
 					else{ // el valor es mayor que 0 y por tanto los datos se envian correctamente
@@ -186,11 +187,13 @@ int main(int *argc, char *argv[])
 						{
 							printf("CLIENTE> Error %d en la recepción de datos\r\n",error);
 							estado=S_QUIT;
+							continue;
 						}
 						else
 						{
 							printf("CLIENTE> Conexión con el servidor cerrada\r\n");
 							estado=S_QUIT;
+							continue;
 						
 					
 						}
@@ -201,7 +204,7 @@ int main(int *argc, char *argv[])
 						if(estado!=S_DATA && strncmp(buffer_in,OK,2)==0) // si el estado es diferente de DATA y comparamos los dos primeros caracteres del mensaje recibido y OK y si coinciden pasa al siguiente estado.
 							estado++;  
 					}
-
+					
 				}while(estado!=S_QUIT);
 				
 	
