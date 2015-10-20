@@ -33,6 +33,14 @@ int main(int *argc, char *argv[])
 	int estado=S_HELO; //Primer valor en la variable estado ya que será una maquina de estados
 	char option; //declaramos option
 
+	//aqui definimos los parametros para el estado S_SUM
+	char primera_palabra[4]="";
+	char ultima_palabra[5]="";
+	char entrada[80]="";
+	unsigned int num1=0;
+	unsigned int num2=0;
+
+
 	WORD wVersionRequested;
 	WSADATA wsaData;
 	int err;
@@ -122,6 +130,16 @@ int main(int *argc, char *argv[])
 						else
 							sprintf_s (buffer_out, sizeof(buffer_out), "%s %s%s",PW,input,CRLF);
 						break;
+					  /* case S_SUM:// estado para pedir al usuario la introduccion del comando SUM con los correspondientes numeros enteros
+					
+						printf("escirba la frase SUM NUM1 NUM2 CRLF separados por espacios y solo sustituyendo NUM1 y NUM2 por dos numeros de 4 digitos como maximo:\n");
+						gets(entrada);
+						sscanf(entrada,"%s %u %u %s",primera_palabra,&num1,&num2,ultima_palabra);
+						printf("%s %u %u %s\n",primera_palabra,num1,num2,ultima_palabra);
+						
+						break;
+						
+						*/
 					case S_DATA://estado data que es para enviar datos
 						printf("CLIENTE> Introduzca datos (enter o QUIT para salir): ");
 						gets(input);
@@ -137,7 +155,7 @@ int main(int *argc, char *argv[])
 				
 					}
 					//Envio
-					if(estado!=S_HELO)
+					if(estado!=S_HELO){
 					// Ejercicio: Comprobar el estado de envio
 						// La primitiva SEND se utiliza para el envio de datos y en este caso esta compuesta por:
 							//sockfd: Socket para recibir y enviar
@@ -164,7 +182,7 @@ int main(int *argc, char *argv[])
 					else{ // el valor es mayor que 0 y por tanto los datos se envian correctamente
 						printf("SERVIDOR> Datos enviados correctamente\r\n");}
 				}
-					
+				
 				//-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-	
 					
 					
@@ -177,11 +195,10 @@ int main(int *argc, char *argv[])
 						//buffer_in: puntero que apunta al mensaje que se quiere recibir.
 						//512: Tamaño en bytes del mensaje que recibimos
 						//0: es como va la llamada.
-						
+					
 					recibidos=recv(sockfd,buffer_in,512,0);
 
-					if(recibidos<=0)
-					{
+					if(recibidos <=0){
 						DWORD error=GetLastError();
 						if(recibidos<0)
 						{
