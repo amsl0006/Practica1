@@ -20,10 +20,10 @@
 #define S_HELO 0
 #define S_USER 1
 #define S_PASS 2
-#define S_SUM  3
-#define S_DATA 4
-#define S_QUIT 5
-#define S_EXIT 6
+//#define S_SUM  3
+#define S_DATA 3
+#define S_QUIT 4
+#define S_EXIT 5
 
 //PUERTO DEL SERVICIO
 #define TCP_SERVICE_PORT	6000

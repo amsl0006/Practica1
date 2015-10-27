@@ -18,7 +18,7 @@
 #define SD2 "EXIT"  // Finalizacion de la conexion de aplicacion y finaliza servidor
 #define NUM1 "NUM1"
 #define NUM2 "NUM2"
-#define SUM  "SUM"
+#define SUM  "SUM "
 // RESPUESTAS A COMANDOS DE APLICACION
 #define OK  "OK"
 #define ER  "ERROR"

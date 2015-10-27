@@ -43,7 +43,7 @@ main()
 	char buffer_out[1024],buffer_in[1024], cmd[10], usr[10], pas[10];
 	//definimos los parametros para el caso de S_SUM
 	char sm[20];
-	int suma=0, num1,num2;
+	int suma=0,Num1,Num2;
 
 	int err,tamanio;
 	int fin=0, fin_conexion=0;
@@ -270,37 +270,7 @@ main()
 				break;
 
 				//---------------------------------------------------------------------------------------------------
-		 	/*	case S_SUM:
-
-
-
-				strncpy_s ( cmd, sizeof(cmd),buffer_in, 4);
-					cmd[4]=0x00; // en C los arrays finalizan con el byte 0000 0000
-
-					//coteja el cliente que ha pedido la conexion con la matriz cmd
-					if ( strcmp(cmd,SUM)==0 ) // si recibido es solicitud de conexion de aplicacion
-					{
-						//se lee el comando introducido por el cliente y lo guarda en la variable sm de la que calcula su dimension
-						sscanf_s (buffer_in,"%s %d %d\r\n",sm,sizeof(sm),&num1,&num2);
-						
-						if((Num1>1000 || Num1<9999) && (Num2>1000 || Num2<9999)){
-	
-						suma=num1+num2;
-						 printf("Ok %d \n",suma);
-						}
-						else{ //si se introduce un usuario erroneo nos lo muestra por pantalla
-					
-						sprintf_s (buffer_out, sizeof(buffer_out), "%s Comando incorrecto%s",ER,CRLF);
-							}
-					}
-					
-					else{ //si se introduce un usuario erroneo nos lo muestra por pantalla
-					
-						sprintf_s (buffer_out, sizeof(buffer_out), "%s Comando incorrecto%s",ER,CRLF);
-						}*/
-				break;
-
-				//--------------------------------------------------------------------------------------------------------------
+		
 
 				//aqui se aguarda la recepcion de los mensajes por el usuario
 				case S_DATA: /***********************************************************/
@@ -326,7 +296,17 @@ main()
 						fin=1;
 					}
 
-					
+						else if(strcmp(cmd,SUM)==0)
+					{
+						sscanf_s(buffer_in, "SUM %d %d\r\n",&Num1,&Num2);
+						if((Num1>999 && Num1<10000) && (Num2>999 && Num2<10000))
+						{
+							suma=Num1+Num2;
+							printf("%d",suma);
+							sprintf_s(buffer_out, sizeof(buffer_out), "%s %d%s",OK, suma, CRLF);
+						}
+
+					}
 					else
 					{
 						sprintf_s (buffer_out, sizeof(buffer_out), "%s Comando incorrecto%s",ER,CRLF);

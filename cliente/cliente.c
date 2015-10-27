@@ -130,26 +130,26 @@ int main(int *argc, char *argv[])
 						else
 							sprintf_s (buffer_out, sizeof(buffer_out), "%s %s%s",PW,input,CRLF);
 						break;
-					  /* case S_SUM:// estado para pedir al usuario la introduccion del comando SUM con los correspondientes numeros enteros
-					
-						printf("escirba la frase SUM NUM1 NUM2 CRLF separados por espacios y solo sustituyendo NUM1 y NUM2 por dos numeros de 4 digitos como maximo:\n");
-						gets(entrada);
-						sscanf(entrada,"%s %u %u %s",primera_palabra,&num1,&num2,ultima_palabra);
-						printf("%s %u %u %s\n",primera_palabra,num1,num2,ultima_palabra);
-						
-						break;
-						
-						*/
+						//---------------------------------------------------------------------------------------------------
 					case S_DATA://estado data que es para enviar datos
-						printf("CLIENTE> Introduzca datos (enter o QUIT para salir): ");
+						
+						
+						printf("CLIENTE> escirba la frase SUM NUM1 NUM2 CRLF separados por espacios y solo sustituyendo NUM1 y NUM2 por dos numeros de 4 digitos como maximo:(intro para salir)\n" );
 						gets(input);
 						if(strlen(input)==0)
 						{
+
 							sprintf_s (buffer_out, sizeof(buffer_out), "%s%s",SD,CRLF);
 							estado=S_QUIT;
+							
 						}
-						else //todo lo que se imprima por pantalla se envia al servidor
+						else{ //todo lo que se imprima por pantalla se envia al servidor
 							sprintf_s (buffer_out, sizeof(buffer_out), "%s%s",input,CRLF);
+
+						printf("%s%s",input,CRLF);
+						sprintf_s (buffer_out, sizeof(buffer_out), "%s%s",input,CRLF);
+					
+						}
 						break;
 				 
 				
