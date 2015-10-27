@@ -298,13 +298,16 @@ main()
 
 						else if(strcmp(cmd,SUM)==0)
 					{
+						Num1=0;
+						Num2=0;
 						sscanf_s(buffer_in, "SUM %d %d\r\n",&Num1,&Num2);
-						if((Num1>999 && Num1<10000) && (Num2>999 && Num2<10000))
+						if((Num1>0 && Num1<10000) && (Num2>0 && Num2<10000))
 						{
 							suma=Num1+Num2;
 							printf("%d",suma);
 							sprintf_s(buffer_out, sizeof(buffer_out), "%s %d%s",OK, suma, CRLF);
-						}
+						}else
+							sprintf_s(buffer_out, sizeof(buffer_out), "ERROR--->INTRODUZCA OTRO VALOR%s",CRLF);
 
 					}
 					else

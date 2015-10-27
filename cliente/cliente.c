@@ -134,7 +134,7 @@ int main(int *argc, char *argv[])
 					case S_DATA://estado data que es para enviar datos
 						
 						
-						printf("CLIENTE> escirba la frase SUM NUM1 NUM2 CRLF separados por espacios y solo sustituyendo NUM1 y NUM2 por dos numeros de 4 digitos como maximo:(intro para salir)\n" );
+						printf("CLIENTE> Escriba la frase SUM NUM1 NUM2 CRLF separados por espacios y solo sustituyendo NUM1 y NUM2 por dos numeros de 4 digitos como maximo:(intro para salir)\n" );
 						gets(input);
 						if(strlen(input)==0)
 						{
